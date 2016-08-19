@@ -22,7 +22,7 @@ import java.sql.SQLException;
 import java.sql.Types;
 
 public class FilterDataTable extends Table {
-  private static final String INSERT = "INSERT INTO IFData "
+  private static final String INSERT = "INSERT INTO IFilterData "
       + "(filter_id, scheme, host, port, path, type, subtype) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
   public int insert(int filterId, String scheme, String host, String port, String path,

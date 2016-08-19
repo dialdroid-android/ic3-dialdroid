@@ -22,7 +22,7 @@ import java.sql.SQLException;
 
 public class FilterActionTable extends TwoIntTable {
   FilterActionTable() {
-    super("IFActions", "filter_id", "action");
+    super("IFilterActions", "filter_id", "action");
   }
 
   public int insert(int filterId, int action) throws SQLException {

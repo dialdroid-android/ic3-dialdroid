@@ -22,7 +22,7 @@ import java.sql.SQLException;
 
 public class ProviderAuthorityTable extends OneIntOneStringTable {
   ProviderAuthorityTable() {
-    super("PAuthorities", "provider_id", "authority");
+    super("ProviderAuthorities", "provider_id", "authority");
   }
 
   @Override

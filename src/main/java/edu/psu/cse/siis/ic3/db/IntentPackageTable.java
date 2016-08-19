@@ -22,7 +22,7 @@ import java.sql.SQLException;
 
 public class IntentPackageTable extends OneIntOneStringTable {
   IntentPackageTable() {
-    super("IPackages", "intent_id", "package");
+    super("IntentPackages", "intent_id", "package");
   }
 
   @Override

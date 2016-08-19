@@ -68,6 +68,8 @@ public class UriDataTable extends Table {
     if (insertStatement.executeUpdate() == 0) {
       return NOT_FOUND;
     }
+    
+    
     return findAutoIncrement();
   }
 }

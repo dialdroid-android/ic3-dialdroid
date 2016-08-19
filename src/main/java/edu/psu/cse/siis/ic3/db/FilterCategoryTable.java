@@ -22,7 +22,7 @@ import java.sql.SQLException;
 
 public class FilterCategoryTable extends TwoIntTable {
   FilterCategoryTable() {
-    super("IFCategories", "filter_id", "category");
+    super("IFilterCategories", "filter_id", "category");
   }
 
   public int insert(int filterId, int category) throws SQLException {

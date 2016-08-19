@@ -22,7 +22,7 @@ import java.sql.SQLException;
 
 public class IntentMimeTypeTable extends IntentOrFilterMimeTypeTable {
   IntentMimeTypeTable() {
-    super("IMimeTypes", "intent_id");
+    super("IntentMimeTypes", "intent_id");
   }
 
   @Override

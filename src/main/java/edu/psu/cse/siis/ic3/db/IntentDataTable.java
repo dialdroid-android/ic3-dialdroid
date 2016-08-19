@@ -22,7 +22,7 @@ import java.sql.SQLException;
 
 public class IntentDataTable extends TwoIntTable {
   IntentDataTable() {
-    super("IData", "intent_id", "data");
+    super("IntentData", "intent_id", "data");
   }
 
   public int forceInsert(int intentId, int data) throws SQLException {

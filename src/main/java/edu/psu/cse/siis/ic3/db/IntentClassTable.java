@@ -22,7 +22,7 @@ import java.sql.SQLException;
 
 public class IntentClassTable extends OneIntOneStringTable {
   IntentClassTable() {
-    super("IClasses", "intent_id", "class");
+    super("IntentClasses", "intent_id", "class");
   }
 
   @Override
