@@ -36,7 +36,7 @@
             	<attribute name="Implementation-Title" value="IC3-DIALDroid"/>
             	<attribute name="Implementation-Version" value="1.0.0"/>
                 <attribute name="Class-Path" value="."/>
-                <attribute name="Rsrc-Class-Path" value="./ axml-2.0.0.jar coal-0.1.7.jar coal-strings-0.1.2.jar commons-cli-1.3.1.jar infoflow.jar infoflow-android.jar jsch-0.1.51.jar log4j-1.2.17.jar mysql-connector-java-5.1.31.jar protobuf-java-2.5.0.jar slf4j-api-1.7.7.jar slf4j-log4j12-1.7.13.jar soot-dialdroid.jar herosclasses-trunk.jar"/>
+                <attribute name="Rsrc-Class-Path" value="./ axml-2.0.0.jar coal-0.1.7.jar coal-strings-0.1.2.jar commons-cli-1.3.1.jar infoflow-dialdroid.jar infoflow-android-dialdroid.jar jsch-0.1.51.jar log4j-1.2.17.jar mysql-connector-java-5.1.31.jar protobuf-java-2.5.0.jar slf4j-api-1.7.7.jar slf4j-log4j12-1.7.13.jar soot-dialdroid.jar herosclasses-trunk.jar"/>
             </manifest>
             <zipfileset src="jar-in-jar-loader.zip"/>
             <fileset dir="${dir.buildfile}/target/classes"/>
@@ -44,8 +44,8 @@
             <zipfileset dir="${dir.buildfile}/lib" includes="coal-0.1.7.jar"/>
             <zipfileset dir="${dir.buildfile}/lib" includes="coal-strings-0.1.2.jar"/>
             <zipfileset dir="${dir.buildfile}/lib" includes="commons-cli-1.3.1.jar"/>
-            <zipfileset dir="${dir.buildfile}/lib" includes="infoflow.jar"/>
-            <zipfileset dir="${dir.buildfile}/lib" includes="infoflow-android.jar"/>
+            <zipfileset dir="${dir.buildfile}/lib" includes="infoflow-dialdroid.jar"/>
+            <zipfileset dir="${dir.buildfile}/lib" includes="infoflow-android-dialdroid.jar"/>
             <zipfileset dir="${dir.buildfile}/lib" includes="jsch-0.1.51.jar"/>
             <zipfileset dir="${dir.buildfile}/lib" includes="log4j-1.2.17.jar"/>
             <zipfileset dir="${dir.buildfile}/lib" includes="mysql-connector-java-5.1.31.jar"/>
@@ -56,4 +56,33 @@
         	<zipfileset dir="${dir.buildfile}/lib" includes="herosclasses-trunk.jar"/>
         </jar>
     </target>
+	
+	<target name="classJar" depends="compile">
+	        <jar destfile="${dir.jarfile}/ic3-dialdroid-classes.jar">
+	            <manifest>
+	                <attribute name="Main-Class" value="org.eclipse.jdt.internal.jarinjarloader.JarRsrcLoader"/>
+	                <attribute name="Rsrc-Main-Class" value="edu.psu.cse.siis.ic3.Main"/>            	           	
+	            	        
+	            	<attribute name="Implementation-Vendor" value=""/>
+	            	<attribute name="Implementation-Title" value="IC3-DIALDroid"/>
+	            	<attribute name="Implementation-Version" value="1.0.0"/>
+	                <attribute name="Class-Path" value="."/>
+	                <attribute name="Rsrc-Class-Path" value="./ axml-2.0.0.jar coal-0.1.7.jar coal-strings-0.1.2.jar commons-cli-1.3.1.jar infoflow-dialdroid.jar infoflow-android-dialdroid.jar jsch-0.1.51.jar log4j-1.2.17.jar mysql-connector-java-5.1.31.jar protobuf-java-2.5.0.jar slf4j-api-1.7.7.jar slf4j-log4j12-1.7.13.jar soot-dialdroid.jar herosclasses-trunk.jar"/>
+	            </manifest>
+	            <zipfileset src="jar-in-jar-loader.zip"/>
+	            <fileset dir="${dir.buildfile}/target/classes"/>
+	            <zipfileset dir="${dir.buildfile}/lib" includes="axml-2.0.0.jar"/>
+	            <zipfileset dir="${dir.buildfile}/lib" includes="coal-0.1.7.jar"/>
+	            <zipfileset dir="${dir.buildfile}/lib" includes="coal-strings-0.1.2.jar"/>
+	            <zipfileset dir="${dir.buildfile}/lib" includes="commons-cli-1.3.1.jar"/>
+	            <zipfileset dir="${dir.buildfile}/lib" includes="jsch-0.1.51.jar"/>
+	            <zipfileset dir="${dir.buildfile}/lib" includes="log4j-1.2.17.jar"/>
+	            <zipfileset dir="${dir.buildfile}/lib" includes="mysql-connector-java-5.1.31.jar"/>
+	            <zipfileset dir="${dir.buildfile}/lib" includes="protobuf-java-2.5.0.jar"/>
+	            <zipfileset dir="${dir.buildfile}/lib" includes="slf4j-api-1.7.7.jar"/>
+	        	<zipfileset dir="${dir.buildfile}/lib" includes="slf4j-log4j12-1.7.13.jar"/>	            
+	        	<zipfileset dir="${dir.buildfile}/lib" includes="herosclasses-trunk.jar"/>
+	        </jar>
+	    </target>
+
 </project>

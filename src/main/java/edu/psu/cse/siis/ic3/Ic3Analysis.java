@@ -40,6 +40,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.xmlpull.v1.XmlPullParserException;
 
+
 import edu.psu.cse.siis.coal.Analysis;
 import edu.psu.cse.siis.coal.AnalysisParameters;
 import edu.psu.cse.siis.coal.FatalAnalysisException;
@@ -85,6 +86,7 @@ public class Ic3Analysis extends Analysis<Ic3CommandLineArguments> {
   protected SetupApplication setupApplication;
   protected String packageName;
   protected Ic3CommandLineArguments arguments;
+  protected String apkPath;
 
   @Override
   protected void registerFieldTransformerFactories(Ic3CommandLineArguments commandLineArguments) {
@@ -131,9 +133,11 @@ public class Ic3Analysis extends Analysis<Ic3CommandLineArguments> {
       componentToIdMap = detailedManifest.writeToDb(false);
     }
 
+    apkPath=commandLineArguments.getInput();
+    
     Timers.v().mainGeneration.start();
     setupApplication = new SetupApplication(commandLineArguments.getManifest(),
-        commandLineArguments.getInput(), commandLineArguments.getAndroidJar());
+        apkPath, commandLineArguments.getAndroidJar());
 
     Map<String, Set<String>> callBackMethods;
 
@@ -316,6 +320,14 @@ public class Ic3Analysis extends Analysis<Ic3CommandLineArguments> {
 
   @Override
   protected void finalizeAnalysis(Ic3CommandLineArguments commandLineArguments) {
+	  try {
+		SQLConnection.saveAppCategory(commandLineArguments.getAppCategory(), apkPath);
+		Timers.v().saveTimeToDb();
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		//e.printStackTrace();
+	}
+	  
   }
 
   protected void addSceneTransformer(Map<SootMethod, Set<String>> entryPointMap) {

@@ -34,7 +34,7 @@ public class StringTable extends Table {
   private static final String BATCH_INSERT = INSERT;
   private static final String BATCH_FIND = "SELECT id, st FROM %s WHERE st IN (?";
 
-  StringTable(String table) {
+  public StringTable(String table) {
     insertString = String.format(INSERT, table);
     findString = String.format(FIND, table);
     batchInsertString = String.format(BATCH_INSERT, table);

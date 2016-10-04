@@ -61,7 +61,9 @@ public class SQLConnection {
   protected static UriTable uriTable = new UriTable();
   protected static ProviderTable providerTable = new ProviderTable();
   protected static ProviderAuthorityTable providerAuthorityTable = new ProviderAuthorityTable();
-
+  protected static StringTable appCategoriesTable = new StringTable("Categories");
+  protected static AppCategoryTable appCategoryTable = new AppCategoryTable();  
+  
   protected static AppAnalysisTimeTable appAnalysisTimeTable = new AppAnalysisTimeTable();
 
   protected static int appId = Constants.NOT_FOUND;
@@ -210,7 +212,13 @@ public class SQLConnection {
 
     return componentId;
   }
-
+  
+  public static void saveAppCategory(String category, String path) throws SQLException {
+	    
+	  int categoryID=appCategoriesTable.insert(category);
+	  appCategoryTable.insert(appId, categoryID, path);
+  }
+  
   protected static void insertFilterData(Integer filterId, ManifestIntentFilter intentFilter)
       throws SQLException {
     List<ManifestData> data = intentFilter.getData();

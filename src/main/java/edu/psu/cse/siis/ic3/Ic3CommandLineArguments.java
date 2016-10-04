@@ -42,6 +42,7 @@ public class Ic3CommandLineArguments extends CommandLineArguments {
   private String protobufDestination;
   private boolean binary;
   private String sample;
+  private String appCategory="Default";
 
   public String getDbName() {
     return dbName != null ? dbName : DEFAULT_DB_NAME;
@@ -128,6 +129,17 @@ public class Ic3CommandLineArguments extends CommandLineArguments {
     return sample;
   }
 
+  
+  /**
+   * Returns the name of the app category.
+   *
+   * @return The app category name, if any
+   */
+  public String getAppCategory() {
+    return appCategory;
+  }
+
+  
   /**
    * Process the command line arguments after initial parsing. This should be called be actually
    * using the arguments contained in this class.
@@ -167,9 +179,13 @@ public class Ic3CommandLineArguments extends CommandLineArguments {
 
     // computeComponents = hasOption("computecomponents") || db != null;
 
-    if (hasOption("protobuf")) {
-      protobufDestination = getOptionValue("protobuf");
+    if (hasOption("category")) {
+      appCategory = getOptionValue("category","Default");
     }
+    
+    if (hasOption("protobuf")) {
+        protobufDestination = getOptionValue("protobuf");
+      }
 
     // computeComponents = hasOption("computecomponents") || db != null || protobufDestination !=
     // null;
