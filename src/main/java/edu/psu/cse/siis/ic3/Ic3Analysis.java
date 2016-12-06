@@ -207,10 +207,12 @@ public class Ic3Analysis extends Analysis<Ic3CommandLineArguments> {
 
     Options.v().set_soot_classpath(commandLineArguments.getInput());
 
-    soot.options.Options.v().set_android_jars(commandLineArguments.getAndroidJar());
+    Options.v().set_force_android_jar("ic3-android.jar");
+    
+    //soot.options.Options.v().set_android_jars();
     // System.out.println(commandLineArguments.getClasspath());
     Options.v().set_ignore_resolution_errors(true);
-    Options.v().set_process_dir(frameworkClasses);
+    //Options.v().set_process_dir(frameworkClasses);
 
     Options.v().setPhaseOption("cg.spark", "on");
 
@@ -407,8 +409,8 @@ public class Ic3Analysis extends Analysis<Ic3CommandLineArguments> {
     soot.options.Options.v().set_process_dir(Collections.singletonList(apkPath));
 
     soot.options.Options.v().set_allow_phantom_refs(true);
-
-    soot.options.Options.v().set_android_jars(this.arguments.getAndroidJar());
+  
+    soot.options.Options.v().set_force_android_jar(this.arguments.getAndroidJar()+"/android-19/android.jar");
 
     Scene.v().loadNecessaryClasses();
 

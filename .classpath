@@ -2,7 +2,7 @@
 <classpath>
 	<classpathentry kind="src" path="src/main/java"/>
 	<classpathentry kind="src" path="src/main/resources"/>
-	<classpathentry kind="lib" path="build/ic3-dialdroid.jar"/>
+	<classpathentry kind="lib" path="build/ic3-dialdroid.jar" sourcepath=""/>
 	<classpathentry kind="lib" path="lib/axml-2.0.0.jar"/>
 	<classpathentry kind="lib" path="lib/coal-0.1.7.jar"/>
 	<classpathentry kind="lib" path="lib/coal-strings-0.1.2.jar"/>
@@ -12,10 +12,9 @@
 	<classpathentry kind="lib" path="lib/mysql-connector-java-5.1.31.jar"/>
 	<classpathentry kind="lib" path="lib/protobuf-java-2.5.0.jar"/>
 	<classpathentry kind="lib" path="lib/slf4j-api-1.7.7.jar"/>
-	<classpathentry kind="lib" path="lib/slf4j-log4j12-1.7.13.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="lib/herosclasses-trunk.jar"/>
-	<classpathentry kind="lib" path="lib/soot-dialdroid.jar"/>
+	<classpathentry kind="lib" path="lib/herosclasses-trunk.jar" sourcepath="/heros"/>
+	<classpathentry kind="lib" path="lib/soot-dialdroid.jar" sourcepath="/soot"/>
 	<classpathentry kind="lib" path="lib/infoflow-android-dialdroid.jar"/>
 	<classpathentry kind="lib" path="lib/infoflow-dialdroid.jar"/>
 	<classpathentry kind="output" path="target/classes"/>

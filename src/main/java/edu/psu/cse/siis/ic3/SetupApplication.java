@@ -12,6 +12,7 @@ package edu.psu.cse.siis.ic3;
 
 import java.io.File;
 import java.io.IOException;
+import java.security.CodeSource;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -394,7 +395,9 @@ public class SetupApplication {
     if (logger.isDebugEnabled()) {
       logger.debug("Android class path: " + this.androidClassPath);
     }
-    Options.v().set_android_jars(this.androidClassPath);
+    
+        
+    Options.v().set_force_android_jar("ic3-android.jar");
     // Options.v().set_src_prec(Options.src_prec_apk);
 
     Options.v().set_src_prec(Options.src_prec_apk);
