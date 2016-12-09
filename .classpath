@@ -17,5 +17,6 @@
 	<classpathentry kind="lib" path="lib/soot-dialdroid.jar" sourcepath="/soot"/>
 	<classpathentry kind="lib" path="lib/infoflow-android-dialdroid.jar"/>
 	<classpathentry kind="lib" path="lib/infoflow-dialdroid.jar"/>
+	<classpathentry kind="lib" path="lib/slf4j-log4j12-1.7.13.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
