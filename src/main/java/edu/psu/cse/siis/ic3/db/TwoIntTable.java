@@ -39,7 +39,7 @@ public abstract class TwoIntTable extends Table {
   private final String batchInsertPattern;
   private final String batchFindPattern;
 
-  protected TwoIntTable(String table, String firstColumn, String secondColumn) {
+  public TwoIntTable(String table, String firstColumn, String secondColumn) {
     insertString = String.format(INSERT, table, firstColumn, secondColumn);
     findString = String.format(FIND, table, firstColumn, secondColumn);
     batchInsertString = String.format(BATCH_INSERT, table, firstColumn, secondColumn);

@@ -18,10 +18,12 @@
  */
 package edu.psu.cse.siis.ic3.manifest;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -92,6 +94,7 @@ public class ManifestPullParser {
 
   private String applicationName;
   private String packageName;
+  private String shaSum;
 
   private static final String[] levelValueToShortString = { Constants.PermissionLevel.NORMAL_SHORT,
       Constants.PermissionLevel.DANGEROUS_SHORT, Constants.PermissionLevel.SIGNATURE_SHORT,
@@ -184,8 +187,11 @@ public class ManifestPullParser {
         loadClassesFromTextManifest(new FileInputStream(manifest));
       } else {
         handleBinaryManifestFile(manifest);
+        
+        shaSum=SHA256Calculator.getSHA256(new File(manifest));
+        
       }
-    } catch (FileNotFoundException e) {
+    } catch (NoSuchAlgorithmException | IOException e) {
       e.printStackTrace();
     }
   }
@@ -263,17 +269,18 @@ public class ManifestPullParser {
 
   public Map<String, Integer> writeToDb(boolean skipEntryPoints) {
     Map<String, Integer> componentIds = new HashMap<String, Integer>();
-
-    componentIds.putAll(SQLConnection.insert(getPackageName(), version, activities, usesPermissions,
+    
+    
+    componentIds.putAll(SQLConnection.insert(getPackageName(), version, shaSum, activities, usesPermissions,
         permissions, skipEntryPoints));
-    componentIds.putAll(SQLConnection.insert(getPackageName(), version, activityAliases, null, null,
+    componentIds.putAll(SQLConnection.insert(getPackageName(), version,shaSum, activityAliases, null, null,
         skipEntryPoints));
     componentIds.putAll(
-        SQLConnection.insert(getPackageName(), version, services, null, null, skipEntryPoints));
+        SQLConnection.insert(getPackageName(), version, shaSum, services, null, null, skipEntryPoints));
     componentIds.putAll(
-        SQLConnection.insert(getPackageName(), version, receivers, null, null, skipEntryPoints));
+        SQLConnection.insert(getPackageName(), version, shaSum, receivers, null, null, skipEntryPoints));
     componentIds.putAll(
-        SQLConnection.insert(getPackageName(), version, providers, null, null, skipEntryPoints));
+        SQLConnection.insert(getPackageName(), version, shaSum, providers, null, null, skipEntryPoints));
 
     return componentIds;
   }

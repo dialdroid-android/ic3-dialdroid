@@ -82,6 +82,10 @@ public abstract class Table {
       session.disconnect();
     }
   }
+  
+  public static void setDBHost(String hostName){
+	   dbHost=hostName;  
+  }
 
   private static void makeSshTunnel() throws IOException, NumberFormatException, JSchException {
     if (session != null && session.isConnected()) {

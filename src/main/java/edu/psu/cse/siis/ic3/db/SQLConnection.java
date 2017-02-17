@@ -81,12 +81,12 @@ public class SQLConnection {
     appId = Constants.NOT_FOUND;
   }
 
-  public static Map<String, Integer> insert(String app, int version,
+  public static Map<String, Integer> insert(String app, int version, String shasum,
       List<ManifestComponent> intentFilters, Set<String> usesPermissions,
       Map<String, String> permissions, boolean skipEntryPoints) {
     try {
       if (appId == Constants.NOT_FOUND) {
-        appId = applicationTable.insert(app, version);
+        appId = applicationTable.insert(app, version,shasum);
       }
       if (usesPermissions != null && !insertUsesPermissions(usesPermissions)) {
         return null;
@@ -333,8 +333,8 @@ public class SQLConnection {
         entryPointMappingTime, ic3Time, entryPathTime, exitPathTime, totalTime);
   }
 
-  public static boolean checkIfAppAnalyzed(String appName, int version) throws SQLException {
-    appId = applicationTable.find(appName, version);
+  public static boolean checkIfAppAnalyzed(String shasum) throws SQLException {
+    appId = applicationTable.find(shasum);
 
     if (appId == Constants.NOT_FOUND) {
       return false;

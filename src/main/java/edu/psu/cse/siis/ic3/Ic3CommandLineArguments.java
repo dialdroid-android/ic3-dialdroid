@@ -21,6 +21,7 @@ package edu.psu.cse.siis.ic3;
 import org.apache.commons.cli.ParseException;
 
 import edu.psu.cse.siis.coal.CommandLineArguments;
+import edu.psu.cse.siis.ic3.db.Table;
 
 /**
  * Command line arguments for IC3.
@@ -31,6 +32,7 @@ public class Ic3CommandLineArguments extends CommandLineArguments {
   private static final int DEFAULT_LOCAL_PORT = 3306;
   private static final String DEFAULT_COMPILED_MODEL_PATH = "/res/icc.cmodel";
   private static final String DEFAULT_DB_NAME = "dialdroid";
+  private static final String DEFAULT_DB_HOST_NAME = "localhost";
 
   private String manifest;
   private String db;
@@ -43,6 +45,7 @@ public class Ic3CommandLineArguments extends CommandLineArguments {
   private boolean binary;
   private String sample;
   private String appCategory="Default";
+  private String dbHostName;
 
   public String getDbName() {
     return dbName != null ? dbName : DEFAULT_DB_NAME;
@@ -145,7 +148,7 @@ public class Ic3CommandLineArguments extends CommandLineArguments {
    * using the arguments contained in this class.
    */
   public void processCommandLineArguments() {
-    manifest = getOptionValue("input");
+    manifest = getOptionValue("in");
 
     if (getCompiledModel() == null && getModel() == null) {
       setCompiledModel(DEFAULT_COMPILED_MODEL_PATH);
@@ -155,6 +158,11 @@ public class Ic3CommandLineArguments extends CommandLineArguments {
 
     if (hasOption("db")) {
       db = getOptionValue("db", DEFAULT_DATABASE_PROPERTIES_PATH);
+    }
+    
+    if (hasOption("dbhost")) {
+        this.dbHostName = getOptionValue("dbhost", DEFAULT_DB_HOST_NAME);
+        Table.setDBHost(this.dbHostName);
     }
 
     if (hasOption("cp")) {

@@ -26,7 +26,7 @@ public abstract class OneIntOneStringTable extends Table {
   private static final String INSERT = "INSERT INTO %s (%s, %s) VALUES (?, ?)";
   private static final String FIND = "SELECT id FROM %s WHERE %s = ? AND %s = ?";
 
-  OneIntOneStringTable(String table, String firstColumn, String secondColumn) {
+  public OneIntOneStringTable(String table, String firstColumn, String secondColumn) {
     insertString = String.format(INSERT, table, firstColumn, secondColumn);
     findString = String.format(FIND, table, firstColumn, secondColumn);
   }

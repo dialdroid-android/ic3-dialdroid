@@ -34,10 +34,15 @@ public class Ic3CommandLineParser extends CommandLineParser<Ic3CommandLineArgume
 
   @Override
   protected void parseAnalysisSpecificArguments(Options options) {
-    // options.addOption(Option.builder("apkormanifest")
-    // .desc("Path to the manifest file or the .apk of the application.").hasArg()
-    // .argName(".apk or manifest").required().build());
-    options.addOption(Option.builder("db").desc("Store entry points to database.").hasArg()
+     options.addOption(Option.builder("in")
+     .desc("Path to the .apk of the application.").hasArg()
+     .argName(".apk path").required().build());
+     
+     options.addOption(Option.builder("cp")
+    	     .desc("Path to android platforms").hasArg()
+    	     .argName("android platform path").required().build());
+    	    
+     options.addOption(Option.builder("db").desc("Store entry points to database.").hasArg()
         .optionalArg(true).argName("DB properties file").build());
     options.addOption(Option.builder("ssh").desc("Use SSH to connect to the database.").hasArg()
         .optionalArg(true).argName("SSH properties file").build());
@@ -46,10 +51,14 @@ public class Ic3CommandLineParser extends CommandLineParser<Ic3CommandLineArgume
     // options.addOption(Option.builder("protobuf").desc("Destination path for the
     // results.").hasArg()
     // .argName("destination path").build());
-    options.addOption(Option.builder("sample").desc("Specify a sample name.").hasArg()
-        .argName("sample name").build());
-    options.addOption(Option.builder("dbname").desc("DB name to connect to.").hasArg()
-        .type(Number.class).argName("DB name").build());
+    //options.addOption(Option.builder("sample").desc("Specify a sample name.").hasArg()
+     //   .argName("sample name").build());
+    options.addOption(Option.builder("dbhost").desc("DB host to connect to.").hasArg()
+        .type(Number.class).argName("DB host").build());
+    
+    options.addOption(Option.builder("dbname").desc("DB name.").hasArg()
+            .type(Number.class).argName("DB name").build());
+        
     options.addOption("computecomponents", false,
         "Compute which components each exit point belongs to.");
     options.addOption("binary", false, "Output a binary protobuf.");
@@ -59,11 +68,11 @@ public class Ic3CommandLineParser extends CommandLineParser<Ic3CommandLineArgume
   protected void printHelp(Options options) {
     HelpFormatter formatter = new HelpFormatter();
     System.out.println(COPYRIGHT);
-    formatter.printHelp("ic3 -input <Android directory> -classpath <classpath> "
-        + "-apk <path to application .apk> [-computecomponents] "
+    formatter.printHelp("ic3 -input <Android directory> -cp <classpath> "
+        + "[-computecomponents] "
         + "[-db <path to DB properties file>] [-ssh <path to SSH properties file>] "
         + "[-localport <DB local port>] [-modeledtypesonly] [-output <output directory>] "
-        // + "[-protobuf <destination path>] [-binary] [-sample <sample name>] "
+         + "[-dbhost DB host name/IP] [-dbname DB name]"
         + "[-threadcount <thread count>]", options);
   }
 }

@@ -22,21 +22,21 @@ import java.sql.SQLException;
 import java.sql.Types;
 
 public class ApplicationTable extends Table {
-  private static final String INSERT = "INSERT INTO Applications (app, version) VALUES (?, ?)";
-  private static final String FIND = "SELECT id FROM Applications WHERE app = ? AND version %s ?";
+  private static final String INSERT = "INSERT INTO Applications (app, version,shasum) VALUES (?, ?,?)";
+  private static final String FIND = "SELECT id FROM Applications WHERE shasum = ?";
 
-  public int insert(String app, int version) throws SQLException {
+  public int insert(String app, int version, String shasum) throws SQLException {
 
-    int id = find(app, version);
+    int id = find(shasum);
     findStatement.close();
     if (id != NOT_FOUND) {
       return id;
     }
 
-    return forceInsert(app, version);
+    return forceInsert(app, version, shasum);
   }
 
-  public int forceInsert(String app, int version) throws SQLException {
+  public int forceInsert(String app, int version, String shasum) throws SQLException {
     if (insertStatement == null || insertStatement.isClosed()) {
       insertStatement = getConnection().prepareStatement(INSERT);
     }
@@ -46,21 +46,21 @@ public class ApplicationTable extends Table {
     } else {
       insertStatement.setInt(2, version);
     }
+    
+    insertStatement.setString(3, shasum);
+    
     if (insertStatement.executeUpdate() == 0) {
       return NOT_FOUND;
     }
+    
     return findAutoIncrement();
   }
 
-  public int find(String app, int version) throws SQLException {
-    String formatArg = (version == NOT_FOUND) ? "IS" : "=";
-    findStatement = getConnection().prepareStatement(String.format(FIND, formatArg));
-    findStatement.setString(1, app);
-    if (version == NOT_FOUND) {
-      findStatement.setNull(2, Types.INTEGER);
-    } else {
-      findStatement.setInt(2, version);
-    }
+  public int find(String shasum) throws SQLException {
+   
+    findStatement = getConnection().prepareStatement(FIND);
+    findStatement.setString(1, shasum);
+   
     return processIntFindQuery(findStatement);
   }
 }
