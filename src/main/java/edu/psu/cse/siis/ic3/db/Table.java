@@ -61,8 +61,7 @@ public abstract class Table {
     Table.sshPropertiesPath = sshPropertiesPath;
     Table.dbPropertiesPath = dbPropertiesPath;
     Table.localPort = localPort;
-    url = sshPropertiesPath != null ? "jdbc:mysql://" + dbHost + ":" + localPort + "/" + dbName
-        : "jdbc:mysql://" + dbHost + "/" + dbName;
+    url =  "jdbc:mysql://" + dbHost + ":" + localPort + "/" + dbName;
   }
 
   public static Connection getConnection() {
@@ -153,7 +152,14 @@ public abstract class Table {
     }
 
     try {
-      connection = DriverManager.getConnection(url, properties);
+    	
+    	String userName=(String)properties.get("user");
+    	String password=(String)properties.get("password");
+    	
+    	url=url+"?user="+userName+"&password="+password+"&useSSL=false";
+    	//System.out.println(url);
+    	
+      connection = DriverManager.getConnection(url);
     } catch (SQLException e) {
       e.printStackTrace();
       return;

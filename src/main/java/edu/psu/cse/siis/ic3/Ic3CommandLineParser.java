@@ -56,6 +56,10 @@ public class Ic3CommandLineParser extends CommandLineParser<Ic3CommandLineArgume
     options.addOption(Option.builder("dbhost").desc("DB host to connect to.").hasArg()
         .type(Number.class).argName("DB host").build());
     
+    options.addOption(Option.builder("category").desc("Category of the application").hasArg()
+            .type(Number.class).argName("App Catgorypp").build());
+        
+    
     options.addOption(Option.builder("dbname").desc("DB name.").hasArg()
             .type(Number.class).argName("DB name").build());
         
@@ -73,6 +77,6 @@ public class Ic3CommandLineParser extends CommandLineParser<Ic3CommandLineArgume
         + "[-db <path to DB properties file>] [-ssh <path to SSH properties file>] "
         + "[-localport <DB local port>] [-modeledtypesonly] [-output <output directory>] "
          + "[-dbhost DB host name/IP] [-dbname DB name]"
-        + "[-threadcount <thread count>]", options);
+        + "[-threadcount <thread count>] [-category App Category]", options);
   }
 }
