@@ -14,7 +14,7 @@ IC3-DIALDroid is an updated version of IC3 (http://siis.cse.psu.edu/ic3/). Howev
 5. IC3-DIALDroid stores results in a MySQL database. The database schema is here: https://github.com/dialdroid-android/dialdroid-db/blob/master/DIALDroid.sql
 6. Please modify the cc.properties file inside the build directory to provide database username and password. 
 7. Please note the the cc.properties file, ic3-android.jar and the AndroidCallbacks.txt must be in the same directory as the ic3-dialdroid.jar.
-8.  Use following command to run ic3-dialdroid
+8.  Use following command to run ic3-dialdroid (build/ic3-dialdroid.jar)
 
 : java [JVM options] -jar [path to IC3 Jar] -input [path to apk] -cp [path to Android platforms] -dbname [database_name]
 
