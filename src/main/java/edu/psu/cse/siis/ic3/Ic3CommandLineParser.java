@@ -48,9 +48,8 @@ public class Ic3CommandLineParser extends CommandLineParser<Ic3CommandLineArgume
         .optionalArg(true).argName("SSH properties file").build());
     options.addOption(Option.builder("localport").desc("Local DB port to connect to.").hasArg()
         .type(Number.class).argName("local DB port").build());
-    // options.addOption(Option.builder("protobuf").desc("Destination path for the
-    // results.").hasArg()
-    // .argName("destination path").build());
+     options.addOption(Option.builder("protobuf").desc("Destination path for the results.").hasArg()
+        .argName("destination path").build());
     //options.addOption(Option.builder("sample").desc("Specify a sample name.").hasArg()
      //   .argName("sample name").build());
     options.addOption(Option.builder("dbhost").desc("DB host to connect to.").hasArg()

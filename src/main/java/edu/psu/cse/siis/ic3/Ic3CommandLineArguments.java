@@ -111,7 +111,7 @@ public class Ic3CommandLineArguments extends CommandLineArguments {
    * @return The destination path if any, otherwise null.
    */
   public String getProtobufDestination() {
-    return null;
+    return protobufDestination;
   }
 
   /**

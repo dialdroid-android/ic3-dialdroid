@@ -410,7 +410,8 @@ public class Ic3Analysis extends Analysis<Ic3CommandLineArguments> {
 
     soot.options.Options.v().set_allow_phantom_refs(true);
   
-    soot.options.Options.v().set_force_android_jar(this.arguments.getAndroidJar()+"/android-19/android.jar");
+    //soot.options.Options.v().set_force_android_jar(this.arguments.getAndroidJar()+"/android-19/android.jar");
+    soot.options.Options.v().set_force_android_jar(this.arguments.getAndroidJar());
 
     Scene.v().loadNecessaryClasses();
 
